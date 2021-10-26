@@ -44,11 +44,11 @@ const Product = () => {
               cardigan.
             </p>
 
-            <div className="flex my-6">
-              <span className="title-font font-medium text-2xl text-white w-1/3">
+            <div className="flex my-6 md:flex-row flex-col">
+              <span className="title-font font-medium text-2xl text-white lg:w-1/3 w-full pb-4">
                 ${(58.95 * quantity).toFixed(2)}
               </span>
-              <div className="flex flex-wrap text-lg text-white w-1/3 select-none">
+              <div className="flex flex-wrap text-lg text-white lg:w-1/3 w-full select-none pb-4">
                 <span
                   onClick={decreaseQuantityHandler}
                   className="mx-4 cursor-pointer hover:opacity-75"
@@ -64,10 +64,10 @@ const Product = () => {
                 </span>
               </div>
 
-              <button className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">
+              <button className="flex text-white bg-red-500 border-0 py-2 mb-4 px-4 focus:outline-none hover:bg-red-600 rounded ">
                 Add to Cart
               </button>
-              <button className="rounded-full w-10 h-10 bg-gray-800 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4 hover:opacity-75">
+              <button className="rounded-full w-10 h-10 bg-gray-800 p-0 border-0 inline-flex items-center justify-center text-gray-500 mx-auto hover:opacity-75">
                 <svg
                   fill="currentColor"
                   strokeLinecap="round"
