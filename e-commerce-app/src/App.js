@@ -7,9 +7,6 @@ import {
 } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-/* import Posts from "./posts/pages/Posts";
-import EditPost from "./posts/pages/EditPost"; */
-
 import "./index.css";
 import NavigationBar from "./shared/components/NavigationBar";
 import Home from "./home/pages/Home";
@@ -20,11 +17,11 @@ import WishList from "./cart/pages/WishList";
 const App = () => {
   const dispatch = useDispatch();
 
-  /* const posts = useSelector((state) => state.posts);
+  const products = useSelector((state) => state.products);
 
-  if (posts?.length === 0 || posts === undefined) {
+  if (products?.length === 0 || products === undefined) {
     dispatch({ type: "fetch" });
-  } */
+  }
 
   let routes = (
     <Switch>

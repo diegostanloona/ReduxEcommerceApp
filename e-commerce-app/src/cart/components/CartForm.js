@@ -7,7 +7,7 @@ const CartForm = () => {
         Sign Up
       </h2>
       <div className="relative mb-4">
-        <label for="full-name" className="leading-7 text-sm text-gray-400">
+        <label htmlFor="full-name" className="leading-7 text-sm text-gray-400">
           Full Name
         </label>
         <input
@@ -18,7 +18,7 @@ const CartForm = () => {
         />
       </div>
       <div className="relative mb-4">
-        <label for="email" className="leading-7 text-sm text-gray-400">
+        <label htmlFor="email" className="leading-7 text-sm text-gray-400">
           Email
         </label>
         <input
@@ -29,7 +29,7 @@ const CartForm = () => {
         />
       </div>
       <div className="relative mb-4">
-        <label for="address" className="leading-7 text-sm text-gray-400">
+        <label htmlFor="address" className="leading-7 text-sm text-gray-400">
           Address
         </label>
         <input
@@ -40,7 +40,7 @@ const CartForm = () => {
         />
       </div>
       <div className="relative mb-4">
-        <label for="telephonee" className="leading-7 text-sm text-gray-400">
+        <label htmlFor="telephonee" className="leading-7 text-sm text-gray-400">
           Telephonee
         </label>
         <input
