@@ -12,7 +12,7 @@ import NavigationBar from "./shared/components/NavigationBar";
 import Home from "./home/pages/Home";
 import Product from "./home/pages/Product";
 import Cart from "./cart/pages/Cart";
-import WishList from "./cart/pages/WishList";
+import WishList from "./cart/pages/WishListPage";
 
 const App = () => {
   const dispatch = useDispatch();

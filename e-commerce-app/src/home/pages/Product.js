@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { useParams } from "react-router";
+import { useParams, useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 
 const Product = () => {
   const productId = useParams().productId;
+
+  const history = useHistory();
 
   const dispatch = useDispatch();
   const product = useSelector(
@@ -38,6 +40,22 @@ const Product = () => {
         },
       },
     });
+    alert("Product added to cart");
+    history.push("/");
+  };
+
+  const addToWishListHandler = () => {
+    dispatch({
+      type: "addToWishList",
+      payload: {
+        wishListItem: {
+          productId: product.id,
+          title: product.title,
+          image: product.image,
+        },
+      },
+    });
+    alert("Product added to wishList");
   };
 
   return (
@@ -87,7 +105,10 @@ const Product = () => {
                   >
                     Add to Cart
                   </button>
-                  <button className="rounded-full w-10 h-10 bg-gray-800 p-0 border-0 inline-flex items-center justify-center text-gray-500 mx-auto hover:opacity-75">
+                  <button
+                    onClick={addToWishListHandler}
+                    className="rounded-full w-10 h-10 bg-gray-800 p-0 border-0 inline-flex items-center justify-center text-gray-500 mx-auto hover:opacity-75"
+                  >
                     <svg
                       fill="currentColor"
                       strokeLinecap="round"

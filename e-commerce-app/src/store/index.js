@@ -1,4 +1,3 @@
-import { join } from "@redux-saga/core/effects";
 import { applyMiddleware, createStore } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { watchAPIcall } from "./saga";
@@ -37,8 +36,6 @@ const postsReducer = (state = initialState, action) => {
       ),
     ][0];
 
-    console.log(isThisProductInCart);
-
     if (isThisProductInCart) {
       newCartItem.quantity += isThisProductInCart.quantity;
     }
@@ -50,10 +47,53 @@ const postsReducer = (state = initialState, action) => {
       newCartItem,
     ];
 
-    console.log(cartCopy);
     return {
       ...state,
       cart: cartCopy,
+    };
+  }
+
+  if (action.type === "removeFromCart") {
+    const productId = action.payload.productId;
+
+    const cartCopy = [
+      ...state.cart.filter((cartItem) => cartItem.productId !== productId),
+    ];
+
+    return {
+      ...state,
+      cart: cartCopy,
+    };
+  }
+
+  if (action.type === "addToWishList") {
+    const newWishListItem = action.payload.wishListItem;
+
+    const wishListCopy = [
+      ...state.wishList.filter(
+        (wishListItem) => wishListItem.productId !== newWishListItem.productId
+      ),
+      newWishListItem,
+    ];
+
+    return {
+      ...state,
+      wishList: wishListCopy,
+    };
+  }
+
+  if (action.type === "removeFromWishList") {
+    const productId = action.payload.productId;
+
+    const wishListCopy = [
+      ...state.wishList.filter(
+        (wishListItem) => wishListItem.productId !== productId
+      ),
+    ];
+
+    return {
+      ...state,
+      wishList: wishListCopy,
     };
   }
 

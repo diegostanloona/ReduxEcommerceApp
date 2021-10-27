@@ -1,9 +1,20 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 
 const CartItem = (props) => {
-  console.log(props);
+  const dispatch = useDispatch();
+
+  const removeFromCartHandler = () => {
+    dispatch({
+      type: "removeFromCart",
+      payload: {
+        productId: props.cartItem.productId,
+      },
+    });
+  };
+
   return (
-    <div className={`${props.isCart ? "pb-4" : "p-4 md:w-1/2"} w-full`}>
+    <div className="pb-4 w-full">
       <div className="h-full flex items-center border-gray-800 border p-4 rounded-lg">
         <img
           alt={props.cartItem.title}
@@ -15,11 +26,15 @@ const CartItem = (props) => {
             {props.cartItem.title}
           </h2>
           <p className="text-gray-600">
-            {props.cartItem.price} X {props.cartItem.quantity} ={" "}
-            {props.cartItem.price * props.cartItem.quantity}
+            {props.cartItem.price.toFixed(2)} X {props.cartItem.quantity}
+            {" = " +
+              (props.cartItem.price * props.cartItem.quantity).toFixed(2)}
           </p>
         </div>
-        <button className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">
+        <button
+          onClick={removeFromCartHandler}
+          className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded"
+        >
           Remove
         </button>
       </div>
