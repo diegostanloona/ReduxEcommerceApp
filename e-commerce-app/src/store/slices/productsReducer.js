@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const initialState = {
   products: [],
+  error: null,
 };
 
 const productsSlice = createSlice({
@@ -19,9 +20,10 @@ const productsSlice = createSlice({
         products: action.payload.response,
       };
     },
-    fetchProductsFailed: (state) => {
+    fetchProductsFailed: (state, action) => {
       return {
         ...state,
+        error: action.payload.error,
       };
     },
   },
