@@ -1,16 +1,12 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { removeFromCart } from "../../store/slices/cartReducer";
 
 const CartItem = (props) => {
   const dispatch = useDispatch();
 
   const removeFromCartHandler = () => {
-    dispatch({
-      type: "removeFromCart",
-      payload: {
-        productId: props.cartItem.productId,
-      },
-    });
+    dispatch(removeFromCart({ productId: props.cartItem.productId }));
   };
 
   return (

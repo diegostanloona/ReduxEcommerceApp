@@ -1,6 +1,11 @@
 import { call, put, takeLatest } from "redux-saga/effects";
+import {
+  fetchProducts,
+  fetchProductsFailed,
+  fetchProductsSucceeded,
+} from "./slices/productsReducer";
 
-function* fetchProducts() {
+function* fetchProductsFromAPI() {
   try {
     const response = yield call(
       () =>
@@ -12,12 +17,12 @@ function* fetchProducts() {
       {}
     );
 
-    yield put({ type: "fetchSucceeded", response: response.products });
+    yield put(fetchProductsSucceeded({ response: response.products }));
   } catch (error) {
-    yield put({ type: "fetchFailed", error });
+    yield put(fetchProductsFailed({ error: error }));
   }
 }
 
 export function* watchAPIcall() {
-  yield takeLatest("fetch", fetchProducts);
+  yield takeLatest(fetchProducts, fetchProductsFromAPI);
 }

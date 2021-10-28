@@ -1,17 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { removeFromWishList } from "../../store/slices/wishListReducer";
 
 const WishListItem = (props) => {
   const dispatch = useDispatch();
 
   const removeFromWishListHandler = () => {
-    dispatch({
-      type: "removeFromWishList",
-      payload: {
-        productId: props.wishListItem.productId,
-      },
-    });
+    dispatch(removeFromWishList({ productId: props.wishListItem.productId }));
   };
 
   return (

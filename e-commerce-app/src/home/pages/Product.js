@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useParams, useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
+import { addToCart } from "../../store/slices/cartReducer";
+import { addToWishList } from "../../store/slices/wishListReducer";
 
 const Product = () => {
   const productId = useParams().productId;
@@ -10,7 +12,9 @@ const Product = () => {
   const dispatch = useDispatch();
   const product = useSelector(
     (state) =>
-      state.products.filter((product) => product.id + "" === productId)[0] //Normally it would make a request to the backend asking for this single product.
+      state.productsState.products.filter(
+        (product) => product.id + "" === productId
+      )[0] //Normally it would make a request to the backend asking for this single product.
   );
 
   const [quantity, setQuantity] = useState(1);
@@ -28,9 +32,8 @@ const Product = () => {
   };
 
   const addToCartHandler = () => {
-    dispatch({
-      type: "addToCart",
-      payload: {
+    dispatch(
+      addToCart({
         cartItem: {
           productId: product.id,
           title: product.title,
@@ -38,23 +41,22 @@ const Product = () => {
           price: product.price,
           image: product.image,
         },
-      },
-    });
+      })
+    );
     alert("Product added to cart");
     history.push("/");
   };
 
   const addToWishListHandler = () => {
-    dispatch({
-      type: "addToWishList",
-      payload: {
+    dispatch(
+      addToWishList({
         wishListItem: {
           productId: product.id,
           title: product.title,
           image: product.image,
         },
-      },
-    });
+      })
+    );
     alert("Product added to wishList");
   };
 

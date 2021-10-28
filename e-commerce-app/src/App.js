@@ -13,6 +13,7 @@ import Home from "./home/pages/Home";
 import Product from "./home/pages/Product";
 import Cart from "./cart/pages/Cart";
 import WishList from "./cart/pages/WishListPage";
+import { fetchProducts } from "./store/slices/productsReducer";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const App = () => {
   const products = useSelector((state) => state.products);
 
   if (products?.length === 0 || products === undefined) {
-    dispatch({ type: "fetch" });
+    dispatch(fetchProducts());
   }
 
   let routes = (

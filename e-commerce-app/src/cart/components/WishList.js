@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import WishListItem from "./WishListItem";
 
 const WishList = () => {
-  const wishListItems = useSelector((state) => state.wishList);
+  const wishListItems = useSelector((state) => state.wishListState.wishList);
 
   return (
     <>
