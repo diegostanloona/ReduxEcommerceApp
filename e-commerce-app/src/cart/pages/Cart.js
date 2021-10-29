@@ -9,10 +9,10 @@ const Cart = () => {
 
       <div className="container px-5 py-8 mx-auto flex flex-wrap">
         <div className="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
-          <CartList isCart={true} />
+          <CartList />
         </div>
         <div className="lg:w-2/6 md:w-1/2 h-full bg-gray-800 bg-opacity-50 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
-          <CartForm isCart={false} />
+          <CartForm />
         </div>
       </div>
     </section>

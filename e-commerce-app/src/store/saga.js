@@ -4,25 +4,25 @@ import {
   fetchProductsFailed,
   fetchProductsSucceeded,
 } from "./slices/productsReducer";
+import regeneratorRuntime from "regenerator-runtime";
 
-function* fetchProductsFromAPI() {
+export const fetchProductsFromAPI = async () => {
+  const response = await fetch("http://localhost:5000/products");
+  const result = await response.json();
+  console.log(result.products);
+  return result.products;
+};
+
+export function* fetchProductsSaga() {
   try {
-    const response = yield call(
-      () =>
-        fetch("http://localhost:5000/products")
-          .then((response) => response.json())
-          .catch((error) => {
-            console.log(error);
-          }),
-      {}
-    );
+    const products = yield call(fetchProductsFromAPI);
 
-    yield put(fetchProductsSucceeded({ response: response.products }));
+    yield put(fetchProductsSucceeded({ response: products }));
   } catch (error) {
     yield put(fetchProductsFailed({ error: error }));
   }
 }
 
 export function* watchAPIcall() {
-  yield takeLatest(fetchProducts, fetchProductsFromAPI);
+  yield takeLatest(fetchProducts, fetchProductsSaga);
 }
